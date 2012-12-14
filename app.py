@@ -1,8 +1,12 @@
 import os
 from fb_download import *
-from flask import Flask, redirect
+from flask import Flask, redirect, render_template
+from flask.ext.bootstrap import Bootstrap
+
 
 app = Flask(__name__)
+Bootstrap(app)
+app.config['BOOTSTRAP_USE_CDN'] = True
 
 @app.route('/')
 def index():
@@ -18,10 +22,10 @@ def stats():
   friends_data = get_friends_fql(auth_vals)
   fflist = filter_friends(friends_data)
   output_str, num = extract_age_sex_str(fflist)
-  return output_str
+  return render_template('template.html', output_str=output_str)
 
 if __name__ == '__main__':
   # Bind to PORT if defined, otherwise default to 5000.
   port = int(os.environ.get('PORT', 5000))
-#  app.debug=False
+  app.debug=True
   app.run(host='0.0.0.0', port=port)
