@@ -1,5 +1,6 @@
 import os
 from fb_download import *
+from actuary_fb import *
 from flask import Flask, redirect, render_template
 from flask.ext.bootstrap import Bootstrap
 
@@ -22,7 +23,8 @@ def stats():
   friends_data = get_friends_fql(auth_vals)
   fflist = filter_friends(friends_data)
   output_str, num = extract_age_sex_str(fflist)
-  return render_template('template.html', output_str=output_str)
+  analysis_str = print_actuary(output_str)
+  return render_template('template.html', analysis_str=analysis_str, num=num)
 
 if __name__ == '__main__':
   # Bind to PORT if defined, otherwise default to 5000.
