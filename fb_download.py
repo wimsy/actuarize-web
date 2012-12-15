@@ -42,6 +42,7 @@ def fb_oauth_init(auth_vals):
   initializeOAuthInputs.set_AppID(auth_vals['app_id'])
   initializeOAuthInputs.set_AppKeyValue(auth_vals['temboo_app_key'])
   initializeOAuthInputs.set_ForwardingURL('http://shrouded-bayou-8408.herokuapp.com/stats/')
+  initializeOAuthInputs.set_Scope("friends_birthday")
 
   # Execute choreo
   initializeOAuthResults = initializeOAuthChoreo.execute_with_results(initializeOAuthInputs)

@@ -168,7 +168,7 @@ def print_actuary(fbdata):
             print p
         else:
             printable=str(p)[:5]
-        analysis_str.append("Probability of a death within" + \
+        analysis_str.append("Probability of a death within " + \
           str(years) + " " + yearword + ": " + printable + "%")
     return "\n".join(analysis_str)
 
